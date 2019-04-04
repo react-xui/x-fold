@@ -1,0 +1,16 @@
+.x-fold .fold-title {
+  cursor: pointer;
+}
+.x-fold .x-fold-header-item .fold-title-icon {
+  font-size: 12px;
+  vertical-align: middle;
+}
+.x-fold .x-fold-header-item.active .fold-title-icon svg {
+  transform: rotate(90deg);
+}
+.x-fold .x-fold-item {
+  display: none;
+}
+.x-fold .x-fold-item.active {
+  display: block;
+}

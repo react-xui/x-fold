@@ -1,0 +1,20 @@
+.x-fold{
+    .fold-title{
+        cursor: pointer;
+    }
+    .x-fold-header-item {
+        .fold-title-icon{
+            font-size:12px;
+            vertical-align: middle;
+        }
+        &.active .fold-title-icon svg{
+            transform: rotate(90deg);
+        }
+    }
+    .x-fold-item{
+        display: none;
+        &.active{
+            display: block;
+        }
+    }
+}
