@@ -37,7 +37,7 @@ export default class Fold extends Component {
         clsCon += " active";
       }
       if(locale){
-        tab = local[tab] || tab;
+        tab = locale[tab] || tab;
       }
       headers.push(
         <div key={key} className={cls} >
