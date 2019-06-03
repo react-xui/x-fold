@@ -28,13 +28,16 @@ export default class Fold extends Component {
     let { active } = this.state;
     let {forceRender} = this.props;
     React.Children.forEach(this.props.children, (item, k) => {
-      let { children, tab } = item.props;
+      let { children, tab,locale } = item.props;
       let cls = 'x-fold-header-item', clsCon = 'x-fold-item';
       let { key } = item;
       let isShow = true;
       if (active.indexOf(key) > -1 ) {
         cls += " active";
         clsCon += " active";
+      }
+      if(locale){
+        tab = local[tab] || tab;
       }
       headers.push(
         <div key={key} className={cls} >
