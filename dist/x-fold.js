@@ -171,24 +171,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var forceRender = this.props.forceRender;
 
 	      _react2.default.Children.forEach(this.props.children, function (item, k) {
-	        var _item$props = item.props,
-	            children = _item$props.children,
-	            tab = _item$props.tab,
-	            locale = _item$props.locale;
+	        if (item && item.type === _Panel2.default) {
+	          var _item$props = item.props,
+	              children = _item$props.children,
+	              tab = _item$props.tab,
+	              locale = _item$props.locale;
 
-	        var cls = 'x-fold-header-item',
-	            clsCon = 'x-fold-item';
-	        var key = item.key;
+	          var cls = 'x-fold-header-item',
+	              clsCon = 'x-fold-item';
+	          var key = item.key;
 
-	        var isShow = true;
-	        if (active.indexOf(key) > -1) {
-	          cls += " active";
-	          clsCon += " active";
+	          var isShow = true;
+	          if (active.indexOf(key) > -1) {
+	            cls += " active";
+	            clsCon += " active";
+	          }
+	          if (locale) {
+	            tab = locale[tab] || tab;
+	          }
+	          headers.push(_react2.default.createElement('div', { key: key, className: cls }, _react2.default.createElement('div', { className: 'fold-title', onClick: _this2.onSelect.bind(_this2, key) }, _react2.default.createElement('i', { className: 'fold-title-icon' }, _react2.default.createElement('svg', { viewBox: '64 64 896 896', 'data-icon': 'right', width: '1em', height: '1em', fill: 'currentColor', 'aria-hidden': 'true' }, _react2.default.createElement('path', { d: 'M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z' }))), tab), _react2.default.createElement('div', { className: clsCon }, _react2.default.cloneElement(item))));
 	        }
-	        if (locale) {
-	          tab = locale[tab] || tab;
-	        }
-	        headers.push(_react2.default.createElement('div', { key: key, className: cls }, _react2.default.createElement('div', { className: 'fold-title', onClick: _this2.onSelect.bind(_this2, key) }, _react2.default.createElement('i', { className: 'fold-title-icon' }, _react2.default.createElement('svg', { viewBox: '64 64 896 896', 'data-icon': 'right', width: '1em', height: '1em', fill: 'currentColor', 'aria-hidden': 'true' }, _react2.default.createElement('path', { d: 'M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z' }))), tab), _react2.default.createElement('div', { className: clsCon }, _react2.default.cloneElement(item))));
 	      });
 	      return _react2.default.createElement('div', null, headers);
 	    }
@@ -243,7 +245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -297,17 +299,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    _createClass(Panel, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            var children = this.props.children;
 
-	            return _react2.default.createElement('div', null, children);
+	            return _react2.default.createElement("div", null, children);
 	        }
 	    }]);
 
 	    return Panel;
 	}(_react.Component);
 
+	Panel.displayName = "Panel";
 	exports.default = Panel;
 
 /***/ })
