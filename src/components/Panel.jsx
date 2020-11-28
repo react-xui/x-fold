@@ -6,9 +6,9 @@ export default class Panel extends Component{
         super(props);
     }
     render(){
-        let {children} = this.props;
+        let {children,className} = this.props;
         return (
-            <div>{children}</div>
+            <div className={className}>{children}</div>
         )
     }
 }
