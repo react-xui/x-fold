@@ -7,9 +7,15 @@
  * Contact: 55342775@qq.com
  */
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from "prop-types";
 import Panel from './Panel';
 export default class Fold extends Component {
+  static propTypes = {
+    handle: PropTypes.string,
+  }
+  static defaultProps = {
+    handle:'header'
+  }
   static Panel = Panel;
   constructor(props) {
     super(props);
@@ -42,8 +48,8 @@ export default class Fold extends Component {
         }
         headers.push(
           <div key={key} className={cls} >
-            <div className="fold-title" onClick={this.onSelect.bind(this, key)}>
-              <i className="fold-title-icon"><svg viewBox="64 64 896 896" data-icon="right" width="1em" height="1em" fill="currentColor" aria-hidden="true" ><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></i>
+            <div className="fold-title" onMouseEnter={this.onMouseEnter} onClick={this.onSelect.bind(this, key,'header')}>
+              <i className="fold-title-icon" onClick={this.onSelect.bind(this, key,'icon')}><svg viewBox="64 64 896 896" data-icon="right" width="1em" height="1em" fill="currentColor" aria-hidden="true" ><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></i>
               {tab}
             </div>
             <div className={clsCon} >{React.cloneElement(item)}</div>
@@ -53,17 +59,24 @@ export default class Fold extends Component {
     })
     return <div>{headers}</div>;
   }
-  onSelect = (key) => {
-    let { active } = this.state;
-    let index = active.indexOf(key);
-    if (index > -1) {
-      active.splice(index, 1);
-    } else {
-      active.push(key);
+  onMouseEnter = (e)=>{
+    if(this.props.handle ==='header'){
+      e.currentTarget.style.cursor = 'pointer';
     }
-    this.setState({ active }, () => {
-      this.props.onChange && this.props.onChange(key);
-    });
+  }
+  onSelect = (key,eventHandle,e) => {
+    if(this.props.handle ===eventHandle){
+      let { active } = this.state;
+      let index = active.indexOf(key);
+      if (index > -1) {
+        active.splice(index, 1);
+      } else {
+        active.push(key);
+      }
+      this.setState({ active }, () => {
+        this.props.onChange && this.props.onChange(key);
+      });
+    }
   }
   render() {
     let { className } = this.props;
